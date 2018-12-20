@@ -3,25 +3,34 @@ Run generate-random.php to generate a file of 20GB (more or less).
 
 ## Config launcher and read script
 Note: the filenames are relative, so cd in the actual working dir.
-To run the launcher exec: `/usr/bin/php launcher.php`
+To run the launcher exec: 
+`/usr/bin/php launcher.php`
 
 The launcher can handle the following params:
+
 	- `-p 40` N part to split in the file
+	
 	- `-n 100` N largest numbers to print out at the end
+	
 
 The read python script can be launch by: `/usr/bin/python ./read.py 100 658234236 877645648`
 The script can handle the following params:
 	- `n_largest` N largest numbers to take
+	
 	- `start_byte` number of byte offset from the start of the file
+	
 	- `end_byte` number of byte to read from the start byte above
+	
 
 
 I tested on a machine with 16GB RAM, SSD HD, 4 core 2GHz with 8 simultaneous process with N=1000 and it takes about 5min avg.
+
 I prefer to manage the process in php to split the memory and cpu usage of python process.
 I could use thread to share the same memory, but there were not much difference in processing time.
 
 To read a 1GB of this file (buffer mode), without processing, the python script take less than 5sec.
 With just the split funciton on the newline the python take more than 8sec, on the same 1GB and so on.. until around 15sec avg to complete the order.
+
 
 -----
 
